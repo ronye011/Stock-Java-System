@@ -1,0 +1,36 @@
+CREATE DATABASE `stock`;
+
+CREATE TABLE product (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    code VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(19,2) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_product_code (code)
+) ENGINE=InnoDB;
+
+CREATE TABLE raw_material (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    code VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    quantity_stock INT NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_raw_material_code (code)
+) ENGINE=InnoDB;
+
+CREATE TABLE product_has_raw_material (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    product_id BIGINT NOT NULL,
+    raw_material_id BIGINT NOT NULL,
+    quantity_required INT NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY uk_product_raw_material (product_id, raw_material_id),
+    CONSTRAINT fk_product
+        FOREIGN KEY (product_id)
+        REFERENCES product(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_raw_material
+        FOREIGN KEY (raw_material_id)
+        REFERENCES raw_material(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
