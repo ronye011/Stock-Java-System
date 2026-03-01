@@ -54,8 +54,8 @@ Create the schema before starting the application
 Configure the datasource in `stock-api/src/main/resources/application.properties`:
 ```properties
 quarkus.datasource.db-kind=mysql
-quarkus.datasource.username=<seu_usuario>
-quarkus.datasource.password=<sua_senha>
+quarkus.datasource.username=<your_user>
+quarkus.datasource.password=<your_password>
 quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/stock
 quarkus.hibernate-orm.database.generation=update
 ```
